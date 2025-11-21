@@ -1,0 +1,33 @@
+@hostname = http://localhost:5000
+
+// @name loginResponse
+@shared.token = {{login.response.body.token}}
+@user = {{login.response.body.user}}
+
+### Iniciar sesión para obtener y guardar el token
+# @name login
+POST {{hostname}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "admin@gmail.com",
+    "password": "1234567890"
+}
+
+### Ejemplo 1: Crear un nuevo tema usando el token guardado
+# La variable @token se reemplazará automáticamente con el valor de la respuesta del login.
+
+POST {{hostname}}/topic
+Content-Type: application/json
+Authorization: Bearer {{@shared.token}}
+
+{
+  "name": "Mi nuevo tema protegido",
+  "orden": 2,
+  "course_uuid": "a1b2c3d4-e5f6-7890-1234-567890abcdef"
+}
+
+### Ejemplo 2: Ver el perfil del usuario logueado
+# Aquí usamos el uuid del usuario que también guardamos de la respuesta del login.
+GET {{hostname}}/users/profile/{{user.uuid_user}}
+Authorization: Bearer {{@shared.token}}

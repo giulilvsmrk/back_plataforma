@@ -1,0 +1,39 @@
+@hostname = http://localhost:5000
+@topic_uuid = c0916232-dd37-4ed0-bc57-e484ac5bd597
+@token = 
+@lesson_uuid = 
+
+### Crear una nueva lección para un tópico
+# @name createLesson
+POST {{hostname}}/lesson
+Content-Type: application/json
+
+{
+  "title": "Configuración del Entorno",
+  "order": 2,
+  "description": "Cómo configurar tu entorno de desarrollo para NestJS.",
+  "resource_url": "https://docs.nestjs.com/first-steps",
+  "topic_uuid": "{{topic_uuid}}"
+}
+
+### Mostrar todas las lecciones
+GET {{hostname}}/lesson
+
+### Mostrar todas las lecciones de un tópico
+GET {{hostname}}/lesson/topic/{{topic_uuid}}
+
+### Mostrar una lección en base a su uuid
+GET {{hostname}}/lesson/{{lesson_uuid}}
+
+### Actualizar una lección en base a su uuid
+PATCH {{hostname}}/lesson/{{lesson_uuid}}
+Content-Type: application/json
+
+{
+  "title": "Configuración del Entorno (Actualizado)",
+  "description": "Pasos detallados para configurar tu entorno de desarrollo para NestJS y TypeScript."
+}
+
+### Eliminar una lección en base a su uuid
+DELETE {{hostname}}/lesson/{{lesson_uuid}}
+

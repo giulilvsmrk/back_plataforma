@@ -1,0 +1,40 @@
+@hostname = http://localhost:5000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMTdmNWYyMi1lOWRhLTQ4YTMtOTgxMy04YmEzNjk1YTJlODgiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGVzIjpbImFkbWluaXN0cmFkb3IiXSwiaWF0IjoxNzYyNzQ1NTE0LCJleHAiOjE3NjI4MzE5MTR9.WMdgcOt33enaWJbGWeCrQKOAlhi-VEnqsD3pcfpQaCw
+@course_uuid = 
+
+### Crear un nuevo curso
+# rol "administrador" o "profesor_creador".
+POST {{hostname}}/course
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMTdmNWYyMi1lOWRhLTQ4YTMtOTgxMy04YmEzNjk1YTJlODgiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGVzIjpbImFkbWluaXN0cmFkb3IiXSwiaWF0IjoxNzYyNzQ1NTE0LCJleHAiOjE3NjI4MzE5MTR9.WMdgcOt33enaWJbGWeCrQKOAlhi-VEnqsD3pcfpQaCw
+
+{
+    "title": "Curso python Primeros pasos",
+    "description": "Curso introductorio de python donde se vera la hisotrio el por qu y como funciona python "
+}
+
+### Obtener todos los cursos
+GET {{hostname}}/course
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMTdmNWYyMi1lOWRhLTQ4YTMtOTgxMy04YmEzNjk1YTJlODgiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGVzIjpbImFkbWluaXN0cmFkb3IiXSwiaWF0IjoxNzYyNzQ1NTE0LCJleHAiOjE3NjI4MzE5MTR9.WMdgcOt33enaWJbGWeCrQKOAlhi-VEnqsD3pcfpQaCw
+
+### Obtener un curso por su UUID
+# Reemplaza el UUID en la URL con el del curso que quieres ver.
+GET {{hostname}}/course/{{course_uuid}}
+Content-Type: application/json
+Authorization: Bearer {{@token}}
+
+### Actualizar un curso
+PATCH {{hostname}}/course/{{course_uuid}}
+Content-Type: application/json
+Authorization: Bearer {{@token}}
+
+{
+    "title": "Curso de Python Actualizado",
+    "description": "Descripción actualizada del curso de Python."
+}
+
+### Eliminar un curso
+DELETE {{hostname}}/course/aee6e53e-5354-40fc-9cb1-e401e61b05e6
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMTdmNWYyMi1lOWRhLTQ4YTMtOTgxMy04YmEzNjk1YTJlODgiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGVzIjpbImFkbWluaXN0cmFkb3IiXSwiaWF0IjoxNzYyNzQ1NTE0LCJleHAiOjE3NjI4MzE5MTR9.WMdgcOt33enaWJbGWeCrQKOAlhi-VEnqsD3pcfpQaCw
